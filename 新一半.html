@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="" X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+  <title>Document</title>
+  
+  <style>
+    #logo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 20px;
+    }
+
+    .logo-container {
+      width: 400px;
+      float: left;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-btn {
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ccc;
+      cursor: pointer;
+    }
+
+    .logo-btn:disabled {
+      background-color: #f2f2f2;
+      cursor: not-allowed;
+    }
+
+    .logo-row {
+      display: flex;
+    }
+
+    .logo-cell {
+      width: 150px;
+      height: 100px;
+      border: 1px solid #000;
+      margin: 2px;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .brown {
+      background-color: brown;
+    }
+
+    .purple {
+      background-color: purple;
+    }
+
+    .white {
+      background-color: white;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .light-blue {
+      background-color: lightblue;
+    }
+
+    .selected {
+      background-color: blue;
+    }
+
+    .intro-container {
+      position: absolute;
+      top: 0;
+      right: 100px;
+      float: right;
+      width: 600px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: end;
+    }
+
+    .info-box {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: end;
+    }
+
+    .info-text {
+      font-size: 14px;
+    }
+
+
+    .bottom-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .time-buttons {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .time-button {
+      width: 100px;
+      height: 40px;
+      margin-right: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      background-color: #ccc;
+      cursor: pointer;
+    }
+
+    .time-button.selected {
+      background-color: blue;
+      color: white;
+    }
+
+
+    .start-button1 {
+      width: 200px;
+      height: 60px;
+      font-size: 24px;
+      border: none;
+      border-radius: 4px;
+      background-color: #ccc;
+      cursor: pointer;
+    }
+
+    .start-button1:hover {
+      background-color: blue;
+      color: #fff;
+    }
+
+    #page2 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    #backButton {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      background-color: #ccc;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #timer {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    #score {
+      float: right;
+      top: 100px;
+      font-size: 36px;
+    }
+
+    #start-button2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 100px;
+      font-size: 32px;
+      font-weight: bold;
+      border-radius: 50px;
+      background-color: #008CBA;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      cursor: pointer;
+    }
+
+    #button-container {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      width: 150px;
+      height: 100px;
+      left: 100px;
+      cursor: pointer;
+    }
+
+    #button-up-left {
+      background-color: rgb(12, 62, 243);
+      top: 0;
+    }
+
+    #button-up {
+      background-color: rgb(12, 243, 31);
+      top: 0;
+    }
+
+    #button-up-right {
+      background-color: rgb(238, 181, 10);
+      top: 0;
+    }
+
+    #button-left {
+      background-color: rgba(99, 48, 6, 0.316);
+      top: 100px;
+    }
+
+    #buttoncenter {
+      background-color: rgb(255, 255, 255);
+      top: 100px;
+      cursor: auto;
+
+    }
+
+    #button-right {
+      background-color: rgb(140, 0, 255);
+      top: 100px;
+    }
+
+    #button-down-left {
+      background-color: red;
+      bottom: 0;
+    }
+
+    #button-down {
+      background-color: rgb(251, 255, 0);
+      bottom: 0;
+    }
+
+    #button-down-right {
+      background-color: rgba(7, 41, 85, 0.547);
+      bottom: 0;
+    }
+
+    .direction-button {
+      position: absolute;
+      font-size: 16px;
+      font-weight: bold;
+      color: #008CBA;
+      text-align: center;
+      line-height: 40px;
+    }
+
+    #direction-up {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #direction-left {
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+    }
+
+    #direction-right {
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+    }
+
+    #direction-down {
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .modal-actions button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #game-score {
+      font-weight: bold;
+    }
+
+    #game-duration {
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      height: 1500px;
+      width: 400px;
+      padding-top: 100px;
+    }
+
+    .left {
+      flex: 1;
+      background-color: #f2f2f2;
+      height: 500px;
+      width: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .box {
+      width: 100px;
+      height: 150px;
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    .correct {
+      background-color: green;
+    }
+
+    .wrong {
+      background-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page1" style="display: block;">
+    <div id="logo-container">
+      <div class="logo-row">
+        <div class="logo-cell blue">左上</div>
+        <div class="logo-cell green">上</div>
+        <div class="logo-cell brown">右上</div>
+
+      </div>
+      <div class="logo-row">
+        <div class="logo-cell purple">左</div>
+        <div class="logo-cell white">方向</div>
+        <div class="logo-cell blue">右</div>
+
+      </div>
+      <div class="logo-row">
+        <div class="logo-cell red">左下</div>
+        <div class="logo-cell yellow">下</div>
+        <div class="logo-cell light-blue">右下</div>
+      </div>
+    </div>
+
+    <div class="intro-container">
+      <div class="info-box">项目意义</div>
+      <div class="info-box info-text">本项目要求训练者迅速做出相反的行动，训练注意指向在感知提示内容、判断正确方向做出行动三个任务中快速转移的敏捷性</div>
+      <div class="info-box">训练方法</div>
+      <div class="info-box info-text">本项目要求受试者根据屏幕中央提示的方位，以最快速度按提示的相反方向点击屏幕对应区域，综合考察形状感知、分析判断力、注意力转移的敏捷性</div>
+      <div class="info-box">训练规则</div>
+      <div class="info-box info-text">答对一次得1分，答错倒扣1分</div>
+    </div>
+
+
+    <div class="bottom-container">
+      <div class="time-buttons">
+        <button class="time-button active" id="time1">1分钟</button>
+        <button class="time-button" id="time3">3分钟</button>
+      </div>
+      <button class="start-button1">开始训练</button>
+    </div>
+  </div>
+
+  <div id="page2" style="display: none;">
+    <button id="backButton">返回</button>
+    <div id="timer">Time Left:</div>
+    <button id="start-button2">开始</button>
+    <div id="score">Score: 0</div>
+    <div id="answer-history"></div>
+    <div id="button-container">
+      <div class="logo-row">
+        <button id="button-up-left" class="button">左上</button>
+        <button id="button-up" class="button">上</button>
+        <button id="button-up-right" class="button">右上</button>
+      </div>
+
+      <div class="logo-row">
+        <button id="button-left" class="button">左</button>
+        <button id="buttoncenter" class="button">方向</button>
+        <button id="button-right" class="button">右</button>
+      </div>
+
+      <div class="logo-row">
+        <button id="button-down-left" class="button">左下</button>
+        <button id="button-down" class="button">下</button>
+        <button id="button-down-right" class="button">右下</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="left">
+        <div id="history" style="overflow: auto; height: 500px;"></div>>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+  <div id="game-over-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Game Over</h2>
+      <p><span id="game-score"></span></p>
+      <p><span id="game-duration"></span></p>
+      <div class="modal-actions">
+        <button id="close-modal-btn">Close</button>
+        <button id="restart-game-btn">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+
+    document.getElementById("time1").addEventListener("click", function () {
+      localStorage.setItem("gameDuration", 60); // 保存游戏时长为60秒
+      document.getElementById("time1").classList.add("selected"); // 添加样式
+      document.getElementById("time3").classList.remove("selected"); // 移除样式
+    });
+    document.getElementById("time3").addEventListener("click", function () {
+      localStorage.setItem("gameDuration", 180); // 保存游戏时长为180秒
+      document.getElementById("time3").classList.add("selected"); // 添加样式
+      document.getElementById("time1").classList.remove("selected"); // 移除样式
+    });
+
+    const startBtn1 = document.querySelector(".start-button1")
+    startBtn1.addEventListener('click', function () {
+      page1.style.display = "none";
+      page2.style.display = "block";
+    })
+
+    let initialTime = localStorage.getItem("gameDuration");
+    let remainingTime = initialTime;
+    let timer = document.getElementById("timer");
+    let directionText = document.getElementById("buttoncenter");
+    let startButton2 = document.getElementById("start-button2");
+    let scoreText = document.getElementById("score");
+    let buttons = document.querySelectorAll('.button');
+    let currentScore = 0;
+    let correctDirection;
+
+    const directions = ["左上", "上", "右上", "左", "右", "左下", "下", "右下"];
+
+    const backButton = document.getElementById('backButton');
+    backButton.addEventListener('click', function () {
+      page2.style.display = "none";
+      page1.style.display = "block";
+    });
+
+    function showDirection() {
+      let direction = directions[Math.floor(Math.random() * directions.length)];
+      
+      directionText.innerText = `按${direction}的反方向`;
+      
+      if (direction == "左上") {
+        direction = "右下";
+      } else if (direction == "上") {
+        direction = "下";
+      } else if (direction == "右上") {
+        direction = "左下";
+      } else if (direction == "左") {
+        direction = "右";
+      } else if (direction == "右") {
+        direction = "左";
+      } else if (direction == "左下") {
+        direction = "右上";
+      } else if (direction == "下") {
+        direction = "上";
+      } else if (direction == "右下") {
+        direction = "左上";
+      }
+      return direction;
+    }
+
+    const historyContainer = document.getElementById('history');
+    historyContainer.scrollTop = historyContainer.scrollHeight;
+
+    
+    function handleButtonClick(buttonDirection, correctDirection) {
+      if (buttonDirection == correctDirection) {
+        currentScore += 1; 
+
+        const correctBox = document.createElement('div');
+        correctBox.classList.add('box', 'correct');
+
+        const correctAnswer = document.createTextNode(correctDirection); 
+        correctBox.appendChild(correctAnswer); 
+        document.getElementById('history').appendChild(correctBox);
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+      } else {
+        currentScore -= 1; 
+
+        const wrongBox = document.createElement('div');
+        wrongBox.classList.add('box', 'wrong');
+
+        const wrongtAnswer = document.createTextNode(buttonDirection); 
+        wrongBox.appendChild(wrongtAnswer); 
+        document.getElementById('history').appendChild(wrongBox);
+        historyContainer.scrollTop = historyContainer.scrollHeight;
+      }
+      scoreText.innerText = `分数：${currentScore}`; 
+    }
+
+    function playGame() {
+      
+      correctDirection = showDirection();
+      console.log(correctDirection);
+      
+      document.querySelectorAll(".button").forEach((button) => {
+        button.addEventListener("click", handleClick);
+      });
+
+      function handleClick(event) {
+        const button = event.target;
+        console.log(correctDirection);
+        handleButtonClick(button.innerHTML, correctDirection);
+        correctDirection = showDirection();
+      }
+
+      const Timer = setInterval(() => {
+        remainingTime -= 1;
+        if (remainingTime <= 0) {
+          clearInterval(Timer); 
+          document.querySelectorAll(".button").forEach((button) => {
+            button.removeEventListener("click", handleClick);
+          });
+          timer.innerText = "时间到！"; 
+          showGameOverModal();
+        } else {
+          timer.innerHTML = "Time left: " + remainingTime;
+        }
+      }, 1000);
+    }
+
+    
+    startButton2.addEventListener("click", function () {
+      startButton2.style.display = "none";
+      playGame(); 
+    });
+
+    const gameOverModal = document.getElementById('game-over-modal');
+    const gameScoreElement = document.getElementById('game-score');
+    const gameDurationElement = document.getElementById('game-duration');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const restartGameBtn = document.getElementById('restart-game-btn');
+
+    function showGameOverModal() {
+      gameOverModal.style.display = 'block';
+
+      page2.style.display = "none";
+      page1.style.display = "block";
+
+      gameScoreElement.innerHTML = "您的分数为： " + currentScore;
+      gameDurationElement.innerHTML = "您的用时为： " + remainingTime;
+    }
+
+    closeModalBtn.addEventListener('click', function () {
+      
+      gameOverModal.style.display = 'none';
+    });
+
+    restartGameBtn.addEventListener('click', function () {
+      page1.style.display = "none";
+      page2.style.display = "block";
+      
+      gameOverModal.style.display = 'none';
+
+      remainingTime = initialTime;
+      currentScore = 0;
+      scoreText.innerText = `分数：${currentScore}`; 
+
+      const historyContainer = document.getElementById('history');
+      historyContainer.innerHTML = '';
+
+      playGame();
+    });
+  </script>
+</body>
+
+</html>
